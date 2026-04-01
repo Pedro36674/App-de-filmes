@@ -1,18 +1,25 @@
 import { Box, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
+import type { FC } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import  {Navigation}  from 'swiper/modules'; 
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import type { MoviesResponse, MovieShort } from "../interfaces";
 
-export const Carrossel = () => {
-     const [filmes, setFilmes] = useState<any[]>([])
+interface CarrosselProps {
+    titulo: string;
+    slug: string;
+}
+
+export const Carrossel: FC<CarrosselProps> = ({ titulo, slug }) => {
+     const [filmes, setFilmes] = useState<MovieShort[]>([])
     
     const obterFilmes = async () => {
-        const url = 'https://api.themoviedb.org/3/trending/all/week?api_key=4707ede47145c2c54054232506a1cfc2'
+        const url = `${import.meta.env.VITE_API_URL}${slug}?api_key=${import.meta.env.VITE_API_KEY}&language=pt-BR`
         const resposta = await fetch(url)
-        const dados = await resposta.json()
+        const dados: MoviesResponse = await resposta.json()
         setFilmes(dados.results)
     }
     
@@ -23,14 +30,14 @@ export const Carrossel = () => {
     return (
 
         <Box sx={{ marginBottom: '2rem' }}>
-            <Typography fontWeight={600} color="#fff" fontSize={20}>Os mais assistidos</Typography>
+            <Typography fontWeight={600} color="#fff" fontSize={20}>{titulo}</Typography>
             <Swiper
             modules={[Navigation]}
             spaceBetween={10}
             slidesPerView={5}
             navigation
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => {}}
+            onSwiper={(swiper) => {}}
         >
             {
                 filmes.map(filme => (
