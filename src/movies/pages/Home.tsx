@@ -1,4 +1,4 @@
-import { Carrossel } from "../components"
+import { CarrosselSuspense } from "../components"
 import { MainLayout } from "../layout"
 
 export const Home = () => {
@@ -8,12 +8,14 @@ export const Home = () => {
     return (
 
        <MainLayout>
-           <Carrossel titulo="Os mais assistidos" slug="trending/all/week" />
-           <Carrossel titulo="Filmes em destaque" slug="movie/popular" />
-           <Carrossel titulo="Séries em alta" slug="tv/popular" />
-           <Carrossel titulo="Filmes em breve" slug="movie/upcoming" />
-           <Carrossel titulo="Filmes em cartaz" slug="movie/now_playing" />
-        </MainLayout>
+           <CarrosselSuspense titulo="Os mais assistidos" slug="trending/all/week" />
+           <CarrosselSuspense titulo="Filmes em destaque" slug="movie/popular" />
+           <CarrosselSuspense titulo="Séries em alta" slug="tv/popular" />
+           <CarrosselSuspense titulo="Filmes em breve" slug="movie/upcoming" />
+           <CarrosselSuspense titulo="Filmes em cartaz" slug="movie/now_playing" />
+           <CarrosselSuspense titulo="Séries no ar" slug="tv/on_the_air" />
+           <CarrosselSuspense titulo="Séries com melhor avaliação" slug="tv/top_rated" />
+       </MainLayout>
 
     )
 }
